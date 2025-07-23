@@ -1,4 +1,4 @@
-# 🛠️ EBPS SQL Backup Tool (GUI)
+# 🛠️ SQL Backup Tool (GUI)
 
 This PowerShell script launches a WPF GUI that helps authenticated users back up selected SQL databases from remote servers to a network locations. It supports instance detection, backup paths, and interactive selection for SQL servers, databases, and destinations.
 
