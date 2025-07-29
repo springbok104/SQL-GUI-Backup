@@ -1,5 +1,5 @@
 <#
-.SYNOPSIS       EBPS GUI to connect to remote SQL servers and perform a backup of a selected database
+.SYNOPSIS       GUI to connect to remote SQL servers and perform a backup of a selected database
 .DESCRIPTION    This script will launch a user friendly GUI that allows remote connect to a SQL server, retrieves all databases, and allows for backup to a remote network location
                 Process of the script:
 
@@ -40,10 +40,10 @@ $local_backupPath = "C:\backups"                                                
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="EBPS" Height="600" Width="600">
+        Title="SQL Backup" Height="600" Width="600">
     <Grid>
         <Image Source="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/M_box.svg/220px-M_box.svg.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="EBPS - SQL Backup Tool" Margin="10,50,10,0" VerticalAlignment="Top" Width="574" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderThickness="0" Cursor="None" FontSize="16" FontFamily="Segoe UI Semibold"/>
+        <Label Content="SQL Backup Tool" Margin="10,50,10,0" VerticalAlignment="Top" Width="574" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderThickness="0" Cursor="None" FontSize="16" FontFamily="Segoe UI Semibold"/>
         <Label Content="Please select your system:" HorizontalAlignment="Left" Margin="40,170,0,0" VerticalAlignment="Top" Height="30" Width="225" FontSize="14"/>
         <Label Content="Please select your database:" HorizontalAlignment="Left" Margin="40,220,0,0" VerticalAlignment="Top" Height="30" Width="225" FontSize="14"/>
         <ComboBox x:Name="db_combobox" HorizontalAlignment="Left" Margin="280,170,0,0" VerticalAlignment="Top" Width="289" Height="30" VerticalContentAlignment="Center" BorderBrush="#FF00A1F1"/>
@@ -177,7 +177,7 @@ $syncHash.button.Add_Click({                                                    
             $backupR = $args[1]                                                         #Set argument to remote backup variable
             $backupL = $args[2]                                                         #Set argument to local backup variable
             $args[0] | foreach {                                                        #Loop through each database name, and:
-                $fileName = $_ + "_" + (get-date -f hhmm) + "_" + (get-date -f dd-MM-yy) + "_" + "EBPS"     #Set the filename
+                $fileName = $_ + "_" + (get-date -f hhmm) + "_" + (get-date -f dd-MM-yy) + "_" + "SQLBackup"     #Set the filename
                 $filePath = $backupL + "\" + $fileName + ".bak"                                             #Set the file path
                 Backup-SqlDatabase -ServerInstance $env:COMPUTERNAME\$getInstances -Database $_ -BackupFile $filePath  #Execute the SQL backup command        
                 Move-Item -Path $filePath -Destination $backupR                                  #Move the sql backup to the backup server
